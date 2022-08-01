@@ -2,14 +2,9 @@
   <li *ngFor="
     let menu of menus;
     let i = index;
-    let first = first;
-    let last = last;
-    let even = even;
-    let odd = odd;
     trackBy: trackByMenus
   ">
     <a
-      href="#"
       [class.active]="selectedIndex === i"
       (click)="handleSelection(i)"
     >{{ menu.title }}</a>

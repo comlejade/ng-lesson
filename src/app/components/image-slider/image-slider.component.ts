@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 
 export interface ImageSlider {
   imgUrl: string;
@@ -11,9 +11,13 @@ export interface ImageSlider {
   templateUrl: './image-slider.component.html',
   styleUrls: ['./image-slider.component.css']
 })
-export class ImageSliderComponent implements OnInit, AfterViewInit, AfterContentInit, AfterContentChecked, AfterViewChecked {
+export class ImageSliderComponent implements AfterViewInit, OnDestroy {
 
   @Input() sliders: ImageSlider[] = [];
+  @Input() sliderHeight = '160px';
+  @Input() intervalBySeconds = 2;
+  selectedIndex = 0;
+  intervalId: any;
   @ViewChild('imageSlider', { static: true })
   imgSlider!: ElementRef;
   @ViewChildren('img')
@@ -23,34 +27,27 @@ export class ImageSliderComponent implements OnInit, AfterViewInit, AfterContent
     private rd2: Renderer2
   ) { }
 
-  ngOnInit() {
-    console.log('ngOnInit', this.imgSlider)
-    console.log('ngOnInit', this.imgs)
-    // alert('ngOnInit')
-    // this.imgSlider.nativeElement.innerHTML = `<div>新模板</div>`
-  }
-
-  ngAfterContentInit(): void {
-    console.log('ngAfterContentInit', this.imgs)
-    // alert('ngAfterContentInit')
-  }
-
-  ngAfterContentChecked(): void {
-    console.log('ngAfterContentChecked', this.imgs)
-    // alert('ngAfterContentChecked')
-  }
-
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit', this.imgs)
-    // alert('ngAfterViewInit')
-    // this.imgs.forEach(item => {
-    //   this.rd2.setStyle(item.nativeElement, 'height', '100px')
-    // })
+
+    // let i = 0;
+    this.intervalId = setInterval(() => {
+      this.rd2.setProperty(
+        this.imgSlider.nativeElement,
+        'scrollLeft',
+        ((++this.selectedIndex % this.sliders.length) * this.imgSlider.nativeElement.scrollWidth) / this.sliders.length
+      );
+    }, this.intervalBySeconds * 1000)
   }
 
-  ngAfterViewChecked(): void {
-    console.log('ngAfterViewChecked', this.imgs)
-    // alert('ngAfterViewChecked')
+  handleScroll (ev: any) {
+    // console.log(ev)
+    let ratio = ev.target.scrollLeft * this.sliders.length / ev.target.scrollWidth;
+    this.selectedIndex = Math.round(ratio);
+    console.log(this.selectedIndex)
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId)
   }
 
 }
