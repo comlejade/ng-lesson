@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 
 export interface ImageSlider {
   imgUrl: string;
@@ -19,7 +19,9 @@ export class ImageSliderComponent implements OnInit, AfterViewInit, AfterContent
   @ViewChildren('img')
   imgs!: QueryList<ElementRef>;
 
-  constructor() { }
+  constructor(
+    private rd2: Renderer2
+  ) { }
 
   ngOnInit() {
     console.log('ngOnInit', this.imgSlider)
@@ -41,6 +43,9 @@ export class ImageSliderComponent implements OnInit, AfterViewInit, AfterContent
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit', this.imgs)
     // alert('ngAfterViewInit')
+    // this.imgs.forEach(item => {
+    //   this.rd2.setStyle(item.nativeElement, 'height', '100px')
+    // })
   }
 
   ngAfterViewChecked(): void {
