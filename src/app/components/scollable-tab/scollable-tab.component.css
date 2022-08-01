@@ -1,0 +1,55 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 5px;
+  white-space: nowrap;
+}
+
+a {
+  text-decoration: none;
+  color: #43494c;
+}
+
+.active {
+  color: red;
+}
+
+.first {
+  color: green;
+}
+
+.last {
+  color: blue;
+}
+
+.even {
+  color: brown;
+}
+
+.odd {
+  color: orchid;
+}
+
+.indicator {
+  background-color: brown;
+  height: 2px;
+  width: 2rem;
+  margin-top: 2px;
+}
