@@ -1,0 +1,11 @@
+<!-- <input type="text" [value]="username" (input)="username = $any($event.target).value">
+<span>{{ username }}</span> -->
+
+<!-- <input type="text" [(ngModel)]="username">
+<span>{{ username }}</span> -->
+
+<!-- <input type="text" [ngModel]="username" (ngModelChange)="username = $event">
+<span>{{ username }}</span> -->
+
+<input type="text" [value]="username" (input)="username = $any($event.target).value">
+<span>{{ username }}</span>

@@ -39,11 +39,11 @@ export class ImageSliderComponent implements AfterViewInit, OnDestroy {
     }, this.intervalBySeconds * 1000)
   }
 
-  handleScroll (ev: any) {
+  handleScroll(ev: any) {
     // console.log(ev)
     let ratio = ev.target.scrollLeft * this.sliders.length / ev.target.scrollWidth;
     this.selectedIndex = Math.round(ratio);
-    console.log(this.selectedIndex)
+    // console.log(this.selectedIndex)
   }
 
   ngOnDestroy(): void {

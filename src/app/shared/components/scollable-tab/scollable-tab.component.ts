@@ -10,7 +10,7 @@ export interface TopMenu {
   templateUrl: './scollable-tab.component.html',
   styleUrls: ['./scollable-tab.component.css']
 })
-export class ScollableTabComponent implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+export class ScollableTabComponent implements OnInit {
 
   selectedIndex = -1;
 
@@ -29,25 +29,25 @@ export class ScollableTabComponent implements OnInit, AfterContentInit, AfterCon
     console.log('组件初始化')
   }
 
-  ngAfterContentInit(): void {
-    console.log('组件内容初始化')
-  }
+  // ngAfterContentInit(): void {
+  //   console.log('组件内容初始化')
+  // }
 
-  ngAfterContentChecked(): void {
-    console.log('组件内容脏值检测')
-  }
+  // ngAfterContentChecked(): void {
+  //   console.log('组件内容脏值检测')
+  // }
 
-  ngAfterViewInit(): void {
-    console.log('组件视图初始化完成')
-  }
+  // ngAfterViewInit(): void {
+  //   console.log('组件视图初始化完成')
+  // }
 
-  ngAfterViewChecked(): void {
-    console.log('组件视图脏值检测')
-  }
+  // ngAfterViewChecked(): void {
+  //   console.log('组件视图脏值检测')
+  // }
 
-  ngOnDestroy(): void {
-    console.log('组件销毁')
-  }
+  // ngOnDestroy(): void {
+  //   console.log('组件销毁')
+  // }
 
   handleSelection(i: number) {
     this.selectedIndex = i;
